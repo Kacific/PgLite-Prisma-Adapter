@@ -1,0 +1,32 @@
+// Minimal schema for the package's own smoke tests.
+// Covers the data types most likely to trigger the parser-record gotcha:
+//   * String  (text)
+//   * Int     (int4)
+//   * Boolean (bool)
+//   * DateTime (timestamptz)  <- this is the one that fails silently
+//                                without the concrete parsers record
+//   * Json     (jsonb)         <- also needs the parsers record
+//
+// This schema lives only in the test fixtures; consumers of the package
+// ship their own schema and bootstrap SQL.
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+  output          = "./generated/client"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Item {
+  id        String   @id
+  name      String
+  count     Int      @default(0)
+  active    Boolean  @default(true)
+  metadata  Json?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

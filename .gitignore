@@ -1,0 +1,36 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+*.tsbuildinfo
+
+# Prisma client generated artefacts (test fixtures regenerate locally)
+test/prisma/.prisma/
+test/prisma/generated/
+
+# Test runner caches
+coverage/
+.nyc_output/
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Environment
+.env
+.env.local
+.envrc
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+
+# Locks (we commit pnpm-lock.yaml; ignore the others if a contributor uses npm/yarn)
+package-lock.json
+yarn.lock
