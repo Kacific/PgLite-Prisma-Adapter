@@ -1,0 +1,11 @@
+# .envrc.example — direnv + macOS Keychain GH_TOKEN.
+# Standard: https://github.com/Kacific/Kacific-GitHub-MultiPAT
+# See the canonical README for full setup, rotation, and non-macOS variants.
+#
+# Keychain entry: gh_kacific_pat
+#
+# Setup (macOS):
+#   security add-generic-password -s 'gh_kacific_pat' -a "$USER" -W
+#   cp .envrc.example .envrc && direnv allow .
+
+export GH_TOKEN="$(security find-generic-password -s 'gh_kacific_pat' -a "$USER" -w 2>/dev/null)"
